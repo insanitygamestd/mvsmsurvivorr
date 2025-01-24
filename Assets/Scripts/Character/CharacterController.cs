@@ -6,6 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f; // Karakterin hareket hızı
+    public VariableJoystick variableJoystick; // Joystick referansı
 
     private Vector2 movement;  // Hareket yönü vektörü
     private Rigidbody2D rb;
@@ -23,8 +24,9 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        // Joystick'ten gelen girdi değerlerini al
+        movement.x = variableJoystick.Horizontal;
+        movement.y = variableJoystick.Vertical;
 
         // Animasyonu ayarla: karakter hareket ediyorsa "isWalking" true olsun
         bool isWalking = movement != Vector2.zero;
